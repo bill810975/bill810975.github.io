@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+const {
+  title = 'Muheng Li — AI Systems & Computer Architecture',
+  description = 'Research interests in AI accelerators, efficient LLM serving, speculative decoding, and agent systems.',
+  eyebrow = '',
+} = Astro.props;
+const fullTitle = title.startsWith('Muheng Li') ? title : `${title} — Muheng Li`;
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/research/', label: 'Research' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/notes/', label: 'Notes' },
+  { href: '/about/', label: 'About' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f7f3" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={Astro.url.href} />
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Muheng Li home"><span class="brand-mark">m<span class="brand-dot">.</span></span><span class="brand-name">MUHENG LI</span></a>
+        <nav class="top-nav" aria-label="Main navigation">
+          {nav.map((item) => <a class={path.startsWith(item.href) ? 'nav-active' : ''} href={item.href}>{item.label}</a>)}
+        </nav>
+        <a class="header-github" href="https://github.com/bill810975" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub <span aria-hidden="true">↗</span></a>
+      </header>
+      <main id="main">
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <div class="footer-name">Muheng Li <span>李沐恒</span></div>
+        <div class="footer-sub">CS & AI systems · Tsinghua University</div>
+        <div class="footer-links">
+          <a href="/about/">About</a>
+          <a href="/projects/">Projects</a>
+          <a href="https://github.com/bill810975" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="#main">Back to top ↑</a>
+        </div>
+        <div class="footer-bottom"><span>© {new Date().getFullYear()} Muheng Li</span><span>Built with Astro · No trackers · No cookies</span></div>
+      </footer>
+    </div>
+  </body>
+</html>

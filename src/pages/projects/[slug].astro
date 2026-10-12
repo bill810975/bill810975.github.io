@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects, type Project } from '../../data/projects';
+export function getStaticPaths() {
+  return projects.map(project => ({ params: { slug: project.slug }, props: { project } }));
+}
+const { project } = Astro.props as { project: Project };
+---
+<BaseLayout title={project.title} description={project.description}>
+  <div class="container">
+    <section class="project-detail-head">
+      <div>
+        <a class="backlink" href="/projects/">← All projects</a>
+        <h1>{project.title}</h1>
+        <p>{project.tagline}</p>
+        <div class="chip-row">{project.tags.map(tag => <span class="chip">{tag}</span>)}</div>
+      </div>
+      <div class="project-meta">
+        <div><small>Type</small><span>{project.category}</span></div>
+        <div><small>Period</small><span>{project.period}</span></div>
+        <div><small>Affiliation</small><span>{project.affiliation}</span></div>
+        <div><small>Status</small><span>{project.ongoing ? 'Ongoing' : 'Project completed'}</span></div>
+      </div>
+    </section>
+    <section class="details-content"><h2>Overview /</h2><div class="details-body"><p>{project.description}</p><ul>{project.details.map(item => <li>{item}</li>)}</ul><p class="privacy-note">This public project overview does not include private code, contact information, or unpublished measurements.</p></div></section>
+  </div>
+</BaseLayout>

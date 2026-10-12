@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+.env*
+# Never commit original private CV files (they contain contact details).
+*CV*.pdf
+*CV*.tex
+*resume*.pdf
+*resume*.tex

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+import { getCollection } from 'astro:content';
+const featured = projects.filter(p => p.featured);
+const recentBlog = (await getCollection('blog', ({ data }) => !data.draft)).sort((a,b) => b.data.date.getTime() - a.data.date.getTime())[0];
+const recentNote = (await getCollection('notes', ({ data }) => !data.draft)).sort((a,b) => b.data.date.getTime() - a.data.date.getTime())[0];
+---
+<BaseLayout>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-upper">
+        <div>
+          <div class="eyebrow-line"><span class="pulse-dot" aria-hidden="true"></span><p>Computer Science & AI Systems</p></div>
+          <h1>Muheng <span class="surname">Li.</span></h1>
+          <div class="hanzi" lang="zh">李沐恒</div>
+          <div class="hero-heading-rule"></div>
+          <p class="hero-description">I study the systems and architectures behind efficient AI — from <strong>GPU kernels and AI accelerators</strong> to <strong>LLM inference and agent systems</strong>.</p>
+          <div class="hero-buttons">
+            <a href="/research/" class="btn-primary">Explore my research <span aria-hidden="true">↗</span></a>
+            <a href="/about/" class="btn-text">More about me &nbsp; ↗</a>
+          </div>
+        </div>
+        <div class="hero-aside">
+          <div class="system-card" role="img" aria-label="Conceptual stack connecting AI models, systems, and hardware architecture">
+            <div class="system-top"><span>RESEARCH / SYSTEM STACK</span><div class="system-dots" aria-hidden="true"><i></i><i></i><i></i></div></div>
+            <div class="stack-graphic">
+              <div class="stack-block"><div><strong>Intelligence</strong><small>MODELS · AGENTS</small></div><div class="stack-motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+              <div class="stack-connector" aria-hidden="true"></div>
+              <div class="stack-block"><div><strong>Systems</strong><small>INFERENCE · KERNELS</small></div><div class="stack-motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+              <div class="stack-connector" aria-hidden="true"></div>
+              <div class="stack-block"><div><strong>Architecture</strong><small>MEMORY · COMPUTE</small></div><div class="stack-motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+            </div>
+            <div class="system-bottom"><span>A RESEARCH PERSPECTIVE</span><b>MODEL ↔ SYSTEM ↔ HARDWARE</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="meta-strip">
+        <div class="meta-item"><small>Currently</small><strong>Computer Science Undergraduate</strong></div>
+        <div class="meta-item"><small>Education</small><strong>Tsinghua University · Yao Class</strong></div>
+        <div class="meta-item"><small>Research</small><strong>AI Systems & Architecture</strong></div>
+        <div class="meta-item"><small>Academic Timeline</small><strong>2023 — 2027 (expected)</strong></div>
+      </div>
+    </section>
+
+    <section class="home-section" aria-labelledby="selected-work">
+      <div class="section-header"><div><div class="tiny-label">01 / Research Portfolio</div><h2 id="selected-work">Selected <em>work.</em></h2><p>Current research directions, described without unpublished performance claims.</p></div><a href="/projects/" class="section-link">All projects &nbsp; ↗</a></div>
+      <div class="projects-grid">
+        {featured.map((project,index) => <ProjectCard project={project} index={index} />)}
+      </div>
+    </section>
+
+    <section class="home-section" aria-labelledby="research-focus">
+      <div class="focus-grid">
+        <div class="focus-copy"><div class="tiny-label">02 / Areas of Interest</div><h2 id="research-focus">Across the <em>compute stack.</em></h2><p>My interests span the interaction between hardware architecture, runtime systems, and model algorithms. I focus on the mechanisms that determine AI inference efficiency.</p><a class="section-link" href="/research/">Research overview &nbsp; ↗</a></div>
+        <div class="focus-list">
+          <div class="focus-row"><span>01</span><div><strong>AI Accelerators</strong><small>Architecture, memory systems, and hardware design</small></div><span>↗</span></div>
+          <div class="focus-row"><span>02</span><div><strong>LLM Serving</strong><small>Efficient inference and speculative decoding</small></div><span>↗</span></div>
+          <div class="focus-row"><span>03</span><div><strong>Agent Systems</strong><small>Tool-using systems and agent workflows</small></div><span>↗</span></div>
+          <div class="focus-row"><span>04</span><div><strong>Empirical LLM Theory</strong><small>Understanding model behavior through measurement</small></div><span>↗</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section" aria-labelledby="field-notes">
+      <div class="section-header"><div><div class="tiny-label">03 / Writing & Notes</div><h2 id="field-notes">Ideas in <em>progress.</em></h2><p>Short essays and working notes on systems, compute, and engineering.</p></div><a href="/blog/" class="section-link">Browse writing &nbsp; ↗</a></div>
+      <div class="writing-grid">
+        {recentBlog && <a class="writing-card" href={`/blog/${recentBlog.id}/`}><span class="post-type">BLOG / FIELD JOURNAL</span><h3>{recentBlog.data.title}</h3><p>{recentBlog.data.summary}</p><div class="writing-card-foot"><time datetime={recentBlog.data.date.toISOString()}>{recentBlog.data.date.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:'UTC'})}</time><span>Read story ↗</span></div></a>}
+        {recentNote && <a class="writing-card" href={`/notes/${recentNote.id}/`}><span class="post-type">NOTES / TECHNICAL</span><h3>{recentNote.data.title}</h3><p>{recentNote.data.summary}</p><div class="writing-card-foot"><time datetime={recentNote.data.date.toISOString()}>{recentNote.data.date.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:'UTC'})}</time><span>Read note ↗</span></div></a>}
+      </div>
+    </section>
+  </div>
+  <section class="cta-band"><div><div class="tiny-label" style="color:#bfd0b6">04 / A Living Portfolio</div><h2>Learning by <em>building.</em></h2><p>Research, experiments, engineering, and the notes that connect them.</p></div><a href="/about/">Explore background &nbsp; ↗</a></section>
+</BaseLayout>

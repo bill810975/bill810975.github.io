@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
+---
+<BaseLayout title="Projects" description="Selected research and engineering projects by Muheng Li.">
+<div class="container">
+  <section class="page-intro"><div class="tiny-label">PORTFOLIO / 02</div><h1>Research, experiments, <em>things built.</em></h1><p>A selection of research directions, engineering projects, and applied AI work. Descriptions are based on my CV and omit confidential implementation details.</p></section>
+  <section class="page-section">
+    <p class="list-intro">ALL WORK / {projects.length} PROJECTS</p>
+    <div class="project-list">{projects.map((project,index) => <ProjectCard project={project} index={index}/>)}</div>
+  </section>
+</div>
+</BaseLayout>

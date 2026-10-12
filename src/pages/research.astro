@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+<BaseLayout title="Research" description="Research interests and ongoing projects of Muheng Li.">
+<div class="container">
+  <section class="page-intro"><div class="kicker tiny-label">RESEARCH / 01</div><h1>Designing for <em>efficient intelligence.</em></h1><p>My work is centered on AI systems and computer architecture. I am especially interested in how compute, memory, and software interact during language-model inference.</p></section>
+  <section class="page-section">
+    <div class="focus-grid" style="margin-bottom:90px">
+      <div class="focus-copy"><div class="tiny-label">RESEARCH QUESTIONS</div><h2>From the model to the <em>machine.</em></h2><p>Three directions connect my work: accelerator and memory architecture, inference-system design, and the algorithms that shape execution.</p></div>
+      <div class="focus-list">
+        <div class="focus-row"><span>01</span><div><strong>AI accelerator architecture</strong><small>Memory-centric design, including 3D DRAM</small></div><span>↗</span></div>
+        <div class="focus-row"><span>02</span><div><strong>LLM inference systems</strong><small>Serving efficiency and speculative decoding</small></div><span>↗</span></div>
+        <div class="focus-row"><span>03</span><div><strong>GPU kernel execution</strong><small>Persistent kernels and system-level execution</small></div><span>↗</span></div>
+        <div class="focus-row"><span>04</span><div><strong>Agent systems & empirical theory</strong><small>Agent workflows and empirical model behavior</small></div><span>↗</span></div>
+      </div>
+    </div>
+    <p class="list-intro">CURRENT RESEARCH / {projects.filter(p => p.ongoing).length} PROJECTS</p>
+    <div class="projects-grid">{projects.filter(p => p.ongoing).map((project,index) => <ProjectCard project={project} index={index}/>)}</div>
+    <p class="privacy-note">The descriptions above reflect ongoing project topics only. Unpublished results and confidential details are intentionally omitted.</p>
+  </section>
+</div>
+</BaseLayout>

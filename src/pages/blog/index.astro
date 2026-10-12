@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog', ({data}) => !data.draft)).sort((a,b) => b.data.date.getTime() - a.data.date.getTime());
+const format = (date: Date) => date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+---
+<BaseLayout title="Blog" description="Essays and project updates on AI systems, GPUs, and architecture.">
+<div class="container"><section class="page-intro"><div class="tiny-label">WRITING / 03</div><h1>A place to <em>think in public.</em></h1><p>Essays, reflections, and project updates about AI systems and research practice.</p></section>
+<section class="page-section"><p class="list-intro">BLOG / {posts.length} ENTRIES</p><div class="article-list">{posts.map(post => <a href={`/blog/${post.id}/`}><time datetime={post.data.date.toISOString()}>{format(post.data.date)}</time><div><h2>{post.data.title}</h2><p>{post.data.summary}</p><div class="article-tags">{post.data.tags.join(' · ')}</div></div><span class="arrow">↗</span></a>)}</div>{posts.length === 0 && <p>Posts will appear here as they are published.</p>}</section></div>
+</BaseLayout>

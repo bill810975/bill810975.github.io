@@ -408,6 +408,85 @@ li {
   color: var(--muted);
 }
 
+.prose h4 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin: 18px 0 6px;
+}
+
+.prose math {
+  font-size: 1.05em;
+}
+
+/* figures, tables and citations in paper-style posts */
+
+.prose figure {
+  margin: 24px 0;
+}
+
+.prose .paper-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.prose figcaption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.prose figcaption p {
+  margin: 0;
+}
+
+.prose .paper-table {
+  overflow-x: auto;
+}
+
+.prose .paper-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.prose .paper-table th,
+.prose .paper-table td {
+  padding: 5px 9px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose .paper-table thead th {
+  border-bottom: 1px solid #c8d1da;
+  font-weight: 600;
+}
+
+.prose .paper-table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.prose .citation,
+.prose a.cite {
+  color: var(--muted);
+}
+
+.prose #refs {
+  font-size: 0.85rem;
+}
+
+.prose #refs .csl-entry {
+  margin-bottom: 7px;
+  padding-left: 1.3em;
+  text-indent: -1.3em;
+}
+
 /* ---------- footer ---------- */
 
 .site-footer {

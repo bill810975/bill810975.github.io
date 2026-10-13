@@ -18,29 +18,30 @@ const formatDate = (date: Date) =>
       I am a senior undergraduate in the <a href="https://iiis.tsinghua.edu.cn/en/" target="_blank" rel="noopener noreferrer">Yao Class</a>
       (Institute for Interdisciplinary Information Sciences) at
       <a href="https://www.tsinghua.edu.cn/en/" target="_blank" rel="noopener noreferrer">Tsinghua University</a>,
-      pursuing a B.S. in Computer Science and Technology (2023–2027, expected).
+      pursuing a B.S. in Computer Science and Technology, and an incoming PhD student at <a href="https://www.tsinghua.edu.cn/en/" target="_blank" rel="noopener noreferrer">ARCH-Lab</a>.
     </p>
     <p>
-      My research sits at the intersection of AI systems and computer architecture. I study the mechanisms that determine
-      how efficiently large models run — from accelerator and memory architecture (e.g., 3D&nbsp;DRAM-based designs for
-      language models), to LLM inference and serving (speculative decoding and draft-model design), to GPU kernel
-      execution (persistent kernels).
+      My research sits at the intersection of AI systems and computer architecture. I work on the mechanisms that
+      determine how efficiently large models run — from chip architecture (3D-stacked accelerators, on-chip networks) and
+      kernel optimization (megakernel generation, persistent kernels), to inference-system design (speculative decoding
+      and draft models) and agent systems that plan and run long-horizon research workflows.
     </p>
     <p>
-      Currently, I am a research intern at the Catalyst Lab, Carnegie Mellon University, working on persistent GPU
-      kernels, and a research intern at Tencent, working on draft-model architectures for speculative decoding.
-      Previously, I worked on LLM accelerator architecture at ArchipLab, Tsinghua University, and on search-based
-      reasoning for Olympiad-style mathematics and physics problems at Tencent.
+      I have spent time as a research intern at the <a href="https://catalyst.cs.cmu.edu/" target="_blank" rel="noopener noreferrer">Catalyst Lab</a>,
+      Carnegie Mellon University, on persistent GPU kernels and megakernel generation, at
+      <a href="https://www.tencent.com/en-us/" target="_blank" rel="noopener noreferrer">Tencent</a>
+      on draft models for speculative decoding and on search-based reasoning for Olympiad-style mathematics and physics,
+      and at ARCH-Lab, Tsinghua University, on 3D-stacked accelerator design.
     </p>
   </section>
 
   <section class="block">
     <h2 class="section">Research Interests</h2>
     <ul>
-      <li><strong>AI accelerator architecture</strong> — memory-centric accelerator design for large language models, including 3D DRAM-based architectures.</li>
-      <li><strong>LLM inference &amp; serving systems</strong> — speculative decoding, draft-model architectures, and serving efficiency.</li>
-      <li><strong>GPU systems &amp; kernel execution</strong> — persistent kernels and system-level execution for GPU workloads.</li>
-      <li><strong>Agent systems &amp; empirical LLM theory</strong> — tool-using agent workflows and measurement-driven studies of model behavior.</li>
+      <li><strong>Chip architecture</strong> — accelerator and memory architecture for AI: 3D-stacked designs, on-chip network topologies, and power, performance, and area analysis for tiled accelerators.</li>
+      <li><strong>Kernel optimization &amp; megakernel generation</strong> — fusing an entire inference pipeline into a single persistent kernel, through boundary fusion, joint retuning, and automated compile–benchmark–revise loops.</li>
+      <li><strong>Compiler generation &amp; inference-system design</strong> — compilers and runtimes that turn model programs into efficient kernels, and serving systems for LLM inference such as speculative decoding.</li>
+      <li><strong>Agent systems for research</strong> — long-horizon control of concurrent workflows that plan, execute experiments, and build reusable skills, toward agentic hardware–software co-design.</li>
     </ul>
   </section>
 
@@ -64,8 +65,8 @@ const formatDate = (date: Date) =>
     <h2 class="section">Experience</h2>
     <h3>Academic</h3>
     <ul class="exp">
-      <li><span class="exp-when">Apr 2026 – Present</span><span><strong>Catalyst Lab, Carnegie Mellon University</strong> — Research Intern. Persistent GPU kernels and system-level execution.</span></li>
-      <li><span class="exp-when">Jan 2025 – Present</span><span><strong>ArchipLab, Tsinghua University</strong> — Research Assistant. LLM accelerator architecture with 3D DRAM.</span></li>
+      <li><span class="exp-when">Feb 2026 – Jul 2026</span><span><strong>Catalyst Lab, Carnegie Mellon University</strong> — Research Intern. Persistent GPU kernels and megakernel generation.</span></li>
+      <li><span class="exp-when">Feb 2025 – Present</span><span><strong>ARCH-Lab, Tsinghua University</strong> — Research Assistant. 3D-stacked accelerator design for large language models.</span></li>
     </ul>
     <h3>Industry</h3>
     <ul class="exp">
@@ -76,7 +77,7 @@ const formatDate = (date: Date) =>
   </section>
 
   <section class="block">
-    <h2 class="section">Blog</h2>
+    <h2 class="section">Blogs</h2>
     {posts.length > 0 ? (
       <ul class="post-list">
         {posts.map((post) => (
@@ -98,7 +99,7 @@ const formatDate = (date: Date) =>
   <section class="block">
     <h2 class="section">Miscs</h2>
     <ul>
-      <li>Board member of CPHOS, a nonprofit community of physics-competition alumni that organizes free competitions and academic seminars for high-school students (2023 – present).</li>
+      <li>Board member of <a href="https://cphos.cn" target="_blank" rel="noopener noreferrer">CPHOS</a>, a nonprofit community of physics-competition alumni that organizes free competitions and academic seminars for high-school students (2023 – present).</li>
     </ul>
   </section>
 </BaseLayout>

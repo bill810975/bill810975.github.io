@@ -54,19 +54,27 @@ jobs:
           fi
           echo "$resp" | jq -c '{cname, status, html_url}'
 
-      - name: Enforce HTTPS (succeeds once the certificate is issued)
+      - name: Enable HTTPS once the certificate is issued
         if: steps.dns.outputs.ready == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           api="https://api.github.com/repos/${GITHUB_REPOSITORY}/pages"
-          resp="$(curl -sS -X PUT \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "$api" -d '{"cname":"muhengli.dev","https_enforced":true}')"
-          echo "$resp" | jq -c '{cname, https_enforced, certificate: .https_certificate.state}' 2>/dev/null \
-            || echo "Certificate not issued yet - will retry on the next run."
+          for attempt in $(seq 1 10); do
+            resp="$(curl -sS -X PUT \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "$api" -d '{"cname":"muhengli.dev","https_enforced":true}')"
+            if [ "$(echo "$resp" | jq -r '.https_enforced // false')" = "true" ]; then
+              echo "HTTPS enforcement enabled."
+              echo "$resp" | jq -c '{cname, https_enforced, certificate: .https_certificate.state}'
+              exit 0
+            fi
+            echo "attempt ${attempt}/10: certificate not ready yet"
+            sleep 30
+          done
+          echo "Certificate still pending - the scheduled run will finish this automatically."
 
       - name: Report live status
         if: steps.dns.outputs.ready == 'true'

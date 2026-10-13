@@ -1,0 +1,19 @@
+---
+import type { Project } from '../data/projects';
+const { project } = Astro.props as { project: Project };
+---
+<div class="proj">
+  <div class="proj-meta">
+    <div class="proj-cat">{project.category}</div>
+    <div>{project.period}</div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-title"><a href={`/projects/${project.slug}/`}>{project.title}</a></div>
+    <p class="proj-desc">{project.tagline}</p>
+    <div class="tags">{project.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+    <div class="proj-actions">
+      <a class="btn" href={`/projects/${project.slug}/`}>Details</a>
+      <span class="proj-affil">{project.affiliation}</span>
+    </div>
+  </div>
+</div>

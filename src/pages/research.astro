@@ -1,24 +1,45 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectRow from '../components/ProjectRow.astro';
 import { projects } from '../data/projects';
+
+const ongoing = projects.filter((project) => project.ongoing);
 ---
-<BaseLayout title="Research" description="Research interests and ongoing projects of Muheng Li.">
-<div class="container">
-  <section class="page-intro"><div class="kicker tiny-label">RESEARCH / 01</div><h1>Designing for <em>efficient intelligence.</em></h1><p>My work is centered on AI systems and computer architecture. I am especially interested in how compute, memory, and software interact during language-model inference.</p></section>
-  <section class="page-section">
-    <div class="focus-grid" style="margin-bottom:90px">
-      <div class="focus-copy"><div class="tiny-label">RESEARCH QUESTIONS</div><h2>From the model to the <em>machine.</em></h2><p>Three directions connect my work: accelerator and memory architecture, inference-system design, and the algorithms that shape execution.</p></div>
-      <div class="focus-list">
-        <div class="focus-row"><span>01</span><div><strong>AI accelerator architecture</strong><small>Memory-centric design, including 3D DRAM</small></div><span>↗</span></div>
-        <div class="focus-row"><span>02</span><div><strong>LLM inference systems</strong><small>Serving efficiency and speculative decoding</small></div><span>↗</span></div>
-        <div class="focus-row"><span>03</span><div><strong>GPU kernel execution</strong><small>Persistent kernels and system-level execution</small></div><span>↗</span></div>
-        <div class="focus-row"><span>04</span><div><strong>Agent systems & empirical theory</strong><small>Agent workflows and empirical model behavior</small></div><span>↗</span></div>
-      </div>
-    </div>
-    <p class="list-intro">CURRENT RESEARCH / {projects.filter(p => p.ongoing).length} PROJECTS</p>
-    <div class="projects-grid">{projects.filter(p => p.ongoing).map((project,index) => <ProjectCard project={project} index={index}/>)}</div>
-    <p class="privacy-note">The descriptions above reflect ongoing project topics only. Unpublished results and confidential details are intentionally omitted.</p>
+<BaseLayout
+  title="Research"
+  description="Research directions of Muheng Li: AI accelerator architecture, LLM inference and serving, GPU kernels, and agent systems."
+>
+  <section class="block">
+    <h2 class="section">Research</h2>
+    <p>
+      My work is centered on AI systems and computer architecture. I am interested in how compute, memory, and software
+      interact during language-model inference — and in the design choices that make serving large models faster and more
+      predictable.
+    </p>
+    <p>
+      Three directions connect my work: accelerator and memory architecture, inference-system design, and the algorithms
+      that shape execution.
+    </p>
   </section>
-</div>
+
+  <section class="block">
+    <h2 class="section">Research Interests</h2>
+    <ul>
+      <li><strong>AI accelerator architecture</strong> — memory-centric accelerator design for large language models, including 3D DRAM-based architectures.</li>
+      <li><strong>LLM inference &amp; serving systems</strong> — speculative decoding, draft-model architectures, and serving efficiency.</li>
+      <li><strong>GPU systems &amp; kernel execution</strong> — persistent kernels and system-level execution for GPU workloads.</li>
+      <li><strong>Agent systems &amp; empirical LLM theory</strong> — tool-using agent workflows and measurement-driven studies of model behavior.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="section">Current Projects</h2>
+    <div class="proj-list">{ongoing.map((project) => <ProjectRow project={project} />)}</div>
+    <p style="margin-top:14px"><a href="/projects/">All projects →</a></p>
+  </section>
+
+  <p class="note">
+    Descriptions above reflect ongoing project topics only. Unpublished measurements, confidential details, and code from
+    industry collaborations are intentionally omitted.
+  </p>
 </BaseLayout>

@@ -1,18 +1,23 @@
 ---
 import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
 const {
-  title = 'Muheng Li — AI Systems & Computer Architecture',
-  description = 'Research interests in AI accelerators, efficient LLM serving, speculative decoding, and agent systems.',
-  eyebrow = '',
-} = Astro.props;
-const fullTitle = title.startsWith('Muheng Li') ? title : `${title} — Muheng Li`;
+  title,
+  description = 'Muheng Li is an undergraduate in the Yao Class at Tsinghua University working on AI systems and computer architecture: AI accelerators, LLM inference, and GPU kernels.',
+} = Astro.props as Props;
+
+const fullTitle = title ? `${title} | Muheng Li` : 'Muheng Li — AI Systems & Computer Architecture';
 const path = Astro.url.pathname;
+const email = 'limh23@mails.tsinghua.edu.cn';
 const nav = [
   { href: '/research/', label: 'Research' },
   { href: '/projects/', label: 'Projects' },
   { href: '/blog/', label: 'Blog' },
-  { href: '/notes/', label: 'Notes' },
-  { href: '/about/', label: 'About' },
 ];
 ---
 <!doctype html>
@@ -20,40 +25,47 @@ const nav = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f7f7f3" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url.href} />
-    <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={Astro.url.href} />
     <title>{fullTitle}</title>
   </head>
   <body>
-    <div class="site-shell">
-      <header class="site-header">
-        <a class="brand" href="/" aria-label="Muheng Li home"><span class="brand-mark">m<span class="brand-dot">.</span></span><span class="brand-name">MUHENG LI</span></a>
-        <nav class="top-nav" aria-label="Main navigation">
-          {nav.map((item) => <a class={path.startsWith(item.href) ? 'nav-active' : ''} href={item.href}>{item.label}</a>)}
-        </nav>
-        <a class="header-github" href="https://github.com/bill810975" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub <span aria-hidden="true">↗</span></a>
-      </header>
-      <main id="main">
-        <slot />
-      </main>
-      <footer class="site-footer">
-        <div class="footer-name">Muheng Li <span>李沐恒</span></div>
-        <div class="footer-sub">CS & AI systems · Tsinghua University</div>
-        <div class="footer-links">
-          <a href="/about/">About</a>
-          <a href="/projects/">Projects</a>
-          <a href="https://github.com/bill810975" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a href="#main">Back to top ↑</a>
+    <div class="wrapper">
+      <aside class="sidebar">
+        {/* To use a photo instead of the monogram, replace this div with
+            <img class="avatar-img" src="/avatar.jpg" alt="Muheng Li" /> */}
+        <div class="avatar" aria-hidden="true">ML</div>
+        <h1 class="name">Muheng Li</h1>
+        <p class="name-cn">李沐恒</p>
+        <div class="affil">
+          <div>Undergraduate Student</div>
+          <div><a href="https://www.tsinghua.edu.cn/en/" target="_blank" rel="noopener noreferrer">Tsinghua University</a></div>
+          <div class="email-line"><a href={`mailto:${email}`}>{email}</a></div>
         </div>
-        <div class="footer-bottom"><span>© {new Date().getFullYear()} Muheng Li</span><span>Built with Astro · No trackers · No cookies</span></div>
-      </footer>
+        <div class="icons">
+          <a href="https://github.com/bill810975" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          </a>
+          <a href={`mailto:${email}`} aria-label="Email">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2Zm12.5 1.5H1.75a.25.25 0 0 0-.25.25v.32L8 7.88l6.5-3.81v-.32a.25.25 0 0 0-.25-.25ZM1.5 5.809v6.441c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809Z"/></svg>
+          </a>
+        </div>
+      </aside>
+      <div class="main">
+        <nav class="topnav" aria-label="Main navigation">
+          {nav.map((item) => <a class={path.startsWith(item.href) ? 'active' : ''} href={item.href}>{item.label}</a>)}
+        </nav>
+        <slot />
+        <footer class="site-footer">
+          <span>© {new Date().getFullYear()} Muheng Li · Built with Astro</span>
+        </footer>
+      </div>
     </div>
   </body>
 </html>

@@ -1,14 +1,28 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
+import ProjectRow from '../../components/ProjectRow.astro';
 import { projects } from '../../data/projects';
+
+const groups = (['Research', 'Engineering', 'Applied AI'] as const)
+  .map((category) => ({ category, items: projects.filter((project) => project.category === category) }))
+  .filter((group) => group.items.length > 0);
 ---
-<BaseLayout title="Projects" description="Selected research and engineering projects by Muheng Li.">
-<div class="container">
-  <section class="page-intro"><div class="tiny-label">PORTFOLIO / 02</div><h1>Research, experiments, <em>things built.</em></h1><p>A selection of research directions, engineering projects, and applied AI work. Descriptions are based on my CV and omit confidential implementation details.</p></section>
-  <section class="page-section">
-    <p class="list-intro">ALL WORK / {projects.length} PROJECTS</p>
-    <div class="project-list">{projects.map((project,index) => <ProjectCard project={project} index={index}/>)}</div>
+<BaseLayout
+  title="Projects"
+  description="Research, engineering, and applied AI projects by Muheng Li — AI accelerators, LLM serving, GPU kernels, FPGA design, and agent systems."
+>
+  <section class="block">
+    <h2 class="section">Projects</h2>
+    <p>
+      A selection of research directions, engineering projects, and applied AI work. Descriptions are based on my CV and
+      omit confidential implementation details and unpublished results.
+    </p>
   </section>
-</div>
+
+  {groups.map((group) => (
+    <section class="block">
+      <h2 class="section">{group.category}</h2>
+      <div class="proj-list">{group.items.map((project) => <ProjectRow project={project} />)}</div>
+    </section>
+  ))}
 </BaseLayout>

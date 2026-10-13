@@ -12,4 +12,4 @@ My interests include **AI accelerators**, **LLM serving systems**, **speculative
 
 Future posts may cover reading notes, project designs, and experiments that can be shared publicly. I will distinguish what a source reports from what an experiment shows and what remains an open question.
 
-This post is the starting point. Project descriptions and technical notes are available from the navigation above.
+This post is the starting point. Project overviews are available under Projects, and research directions under Research.

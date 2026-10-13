@@ -1,10 +1,38 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-const posts = (await getCollection('blog', ({data}) => !data.draft)).sort((a,b) => b.data.date.getTime() - a.data.date.getTime());
-const format = (date: Date) => date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 ---
-<BaseLayout title="Blog" description="Essays and project updates on AI systems, GPUs, and architecture.">
-<div class="container"><section class="page-intro"><div class="tiny-label">WRITING / 03</div><h1>A place to <em>think in public.</em></h1><p>Essays, reflections, and project updates about AI systems and research practice.</p></section>
-<section class="page-section"><p class="list-intro">BLOG / {posts.length} ENTRIES</p><div class="article-list">{posts.map(post => <a href={`/blog/${post.id}/`}><time datetime={post.data.date.toISOString()}>{format(post.data.date)}</time><div><h2>{post.data.title}</h2><p>{post.data.summary}</p><div class="article-tags">{post.data.tags.join(' · ')}</div></div><span class="arrow">↗</span></a>)}</div>{posts.length === 0 && <p>Posts will appear here as they are published.</p>}</section></div>
+<BaseLayout
+  title="Blog"
+  description="Essays and project updates on AI systems, GPU kernels, and computer architecture by Muheng Li."
+>
+  <section class="block">
+    <h2 class="section">Blog</h2>
+    <p>Essays, reading notes, and project updates about AI systems and research practice.</p>
+  </section>
+
+  <section class="block">
+    {posts.length > 0 ? (
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li>
+            <span class="post-when"><time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time></span>
+            <span>
+              <div class="post-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></div>
+              <p class="post-summary">{post.data.summary}</p>
+              {post.data.tags.length > 0 && <div class="post-tags">{post.data.tags.join(' · ')}</div>}
+            </span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="note">Posts will appear here as they are published.</p>
+    )}
+  </section>
 </BaseLayout>

@@ -20,7 +20,7 @@ export const projects: Project[] = [
     tagline: 'Exploring memory-centric hardware for language model acceleration.',
     category: 'Research',
     period: 'Jan 2025 — Present',
-    affiliation: 'ArchipLab · Tsinghua University',
+    affiliation: 'ARChip Lab · Tsinghua University',
     tags: ['Computer Architecture', '3D DRAM', 'LLM Inference'],
     description: 'A research project investigating accelerator architectures for large language models, with an emphasis on 3D DRAM.',
     details: [

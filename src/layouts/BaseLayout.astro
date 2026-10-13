@@ -15,10 +15,12 @@ const fullTitle = title ? `${title} | Muheng Li` : 'Muheng Li — AI Systems & C
 const path = Astro.url.pathname;
 const email = 'limh23@mails.tsinghua.edu.cn';
 const nav = [
+  { href: '/', label: 'About' },
   { href: '/research/', label: 'Research' },
   { href: '/projects/', label: 'Projects' },
   { href: '/blog/', label: 'Blogs' },
 ];
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 <!doctype html>
 <html lang="en">
@@ -31,7 +33,10 @@ const nav = [
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url.href} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta property="og:image" content={`${Astro.url.origin}/icon-512.png`} />
     <link rel="canonical" href={Astro.url.href} />
     <title>{fullTitle}</title>
   </head>
@@ -57,7 +62,7 @@ const nav = [
       </aside>
       <div class="main">
         <nav class="topnav" aria-label="Main navigation">
-          {nav.map((item) => <a class={path.startsWith(item.href) ? 'active' : ''} href={item.href}>{item.label}</a>)}
+          {nav.map((item) => <a class={isActive(item.href) ? 'active' : ''} href={item.href}>{item.label}</a>)}
         </nav>
         <slot />
         <footer class="site-footer">

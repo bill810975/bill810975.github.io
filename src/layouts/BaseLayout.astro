@@ -18,6 +18,9 @@ const isBlogPost = path.startsWith('/blog/') && path !== '/blog/';
 const email = 'limh23@mails.tsinghua.edu.cn';
 const nav = [
   { href: '/', label: 'About' },
+  { href: '/research/', label: 'Research' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/blog/', label: 'Blogs' },
 ];
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---

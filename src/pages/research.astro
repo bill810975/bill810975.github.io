@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectRow from '../components/ProjectRow.astro';
 import { projects } from '../data/projects';
 
-const ongoing = projects.filter((project) => project.ongoing);
+const researchProjects = projects.filter((project) => project.category === 'Research');
 ---
 <BaseLayout
   title="Research"
@@ -12,34 +12,43 @@ const ongoing = projects.filter((project) => project.ongoing);
   <section class="block">
     <h2 class="section">Research</h2>
     <p>
-      My work is centered on AI systems and computer architecture. I am interested in how compute, memory, and software
-      interact during language-model inference — and in the design choices that make serving large models faster and more
-      predictable.
-    </p>
-    <p>
-      Three directions connect my work: accelerator and memory architecture, inference-system design, and the algorithms
-      that shape execution.
+      My research spans machine learning systems, computer architecture, and the internal science of how language models develop,
+      since that understanding shapes the infrastructure we build around them. I am also interested in agent systems for
+      machine learning systems and computer architecture, especially agents that support their co-design.
     </p>
   </section>
 
   <section class="block">
     <h2 class="section">Research Interests</h2>
     <ul>
-      <li><strong>Chip architecture</strong> — accelerator and memory architecture for AI: 3D-stacked designs, on-chip network topologies, and power, performance, and area analysis for tiled accelerators.</li>
-      <li><strong>Kernel optimization &amp; megakernel generation</strong> — fusing an entire inference pipeline into a single persistent kernel, through boundary fusion, joint retuning, and automated compile–benchmark–revise loops.</li>
-      <li><strong>Compiler generation &amp; inference-system design</strong> — compilers and runtimes that turn model programs into efficient kernels, and serving systems for LLM inference such as speculative decoding.</li>
-      <li><strong>Agent systems for research</strong> — long-horizon control of concurrent workflows that plan, execute experiments, and build reusable skills, toward agentic hardware–software co-design.</li>
+      <li>
+        <strong>Machine learning systems</strong>
+        <ul>
+          <li>Workload, compiler, and computer architecture co-design</li>
+          <li>Kernel generation</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Computer architecture</strong>
+        <ul><li>3D-stacked DRAM AI accelerator</li></ul>
+      </li>
+      <li>
+        <strong>Agent systems for machine learning systems and computer architecture co-design</strong>
+        <ul>
+          <li>Concurrency scaling of agent systems</li>
+          <li>Agent build agent</li>
+          <li>Agent for machine learning systems and computer architecture co-design</li>
+        </ul>
+      </li>
     </ul>
   </section>
 
   <section class="block">
-    <h2 class="section">Current Projects</h2>
-    <div class="proj-list">{ongoing.map((project) => <ProjectRow project={project} />)}</div>
-    <p style="margin-top:14px"><a href="/projects/">All projects →</a></p>
+    <h2 class="section">Research Projects</h2>
+    <div class="proj-list">{researchProjects.map((project) => <ProjectRow project={project} />)}</div>
   </section>
 
   <p class="note">
-    Descriptions above reflect ongoing project topics only. Unpublished measurements, confidential details, and code from
-    industry collaborations are intentionally omitted.
+    Unpublished measurements, confidential details, and code from industry collaborations are intentionally omitted.
   </p>
 </BaseLayout>

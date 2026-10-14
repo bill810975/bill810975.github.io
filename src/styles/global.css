@@ -261,6 +261,31 @@ li {
   margin-top: 10px;
 }
 
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  color: #57606a;
+}
+
+.project-link:hover {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.project-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.project-link-word {
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .proj-affil {
   color: var(--muted);
   font-size: 0.85rem;

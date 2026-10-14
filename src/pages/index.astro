@@ -4,7 +4,7 @@ import ProjectRow from '../components/ProjectRow.astro';
 import { projects } from '../data/projects';
 import { getCollection } from 'astro:content';
 
-const featured = projects.filter((project) => project.featured);
+const homepageProjects = projects;
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
@@ -21,10 +21,9 @@ const formatDate = (date: Date) =>
       pursuing a B.S. in Computer Science and Technology, and an incoming PhD student at <a href="https://group.iiis.tsinghua.edu.cn/~maks/" target="_blank" rel="noopener noreferrer">ARChip Lab</a>.
     </p>
     <p>
-      My research sits at the intersection of AI systems and computer architecture. I work on the mechanisms that
-      determine how efficiently large models run — from chip architecture (3D-stacked accelerators, on-chip networks) and
-      kernel optimization (megakernel generation, persistent kernels), to inference-system design (speculative decoding
-      and draft models) and agent systems that plan and run long-horizon research workflows.
+      My research spans machine learning systems, computer architecture, and the internal science of how language models develop,
+      since that understanding shapes the infrastructure we build around them. I am also interested in agent systems for
+      machine learning systems and computer architecture, especially agents that support their co-design.
     </p>
     <p>
       I have spent time as a research intern at the <a href="https://catalyst.cs.cmu.edu/" target="_blank" rel="noopener noreferrer">Catalyst Lab</a>,
@@ -38,10 +37,25 @@ const formatDate = (date: Date) =>
   <section class="block">
     <h2 class="section">Research Interests</h2>
     <ul>
-      <li><strong>Chip architecture</strong> — accelerator and memory architecture for AI: 3D-stacked designs, on-chip network topologies, and power, performance, and area analysis for tiled accelerators.</li>
-      <li><strong>Kernel optimization &amp; megakernel generation</strong> — fusing an entire inference pipeline into a single persistent kernel, through boundary fusion, joint retuning, and automated compile–benchmark–revise loops.</li>
-      <li><strong>Compiler generation &amp; inference-system design</strong> — compilers and runtimes that turn model programs into efficient kernels, and serving systems for LLM inference such as speculative decoding.</li>
-      <li><strong>Agent systems for research</strong> — long-horizon control of concurrent workflows that plan, execute experiments, and build reusable skills, toward agentic hardware–software co-design.</li>
+      <li>
+        <strong>Machine learning systems</strong>
+        <ul>
+          <li>Workload, compiler, and computer architecture co-design</li>
+          <li>Kernel generation</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Computer architecture</strong>
+        <ul><li>3D-stacked DRAM AI accelerator</li></ul>
+      </li>
+      <li>
+        <strong>Agent systems for machine learning systems and computer architecture co-design</strong>
+        <ul>
+          <li>Concurrency scaling of agent systems</li>
+          <li>Agent build agent</li>
+          <li>Agent for machine learning systems and computer architecture co-design</li>
+        </ul>
+      </li>
     </ul>
   </section>
 
@@ -56,23 +70,22 @@ const formatDate = (date: Date) =>
   </section>
 
   <section class="block">
-    <h2 class="section">Selected Projects</h2>
-    <div class="proj-list">{featured.map((project) => <ProjectRow project={project} />)}</div>
-    <p style="margin-top:14px"><a href="/projects/">All projects →</a></p>
+    <h2 class="section">Projects</h2>
+    <div class="proj-list">{homepageProjects.map((project) => <ProjectRow project={project} />)}</div>
   </section>
 
   <section class="block">
     <h2 class="section">Experience</h2>
     <h3>Academic</h3>
     <ul class="exp">
-      <li><span class="exp-when">Feb 2026 – Jul 2026</span><span><strong><a href="https://catalyst.cs.cmu.edu/" target="_blank" rel="noopener noreferrer">Catalyst Lab</a>, Carnegie Mellon University</strong> — Research Intern, advised by <a href="https://scholar.google.com/citations?user=0IWLFR4AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Zhihao Jia</a>. Persistent GPU kernels and megakernel generation.</span></li>
-      <li><span class="exp-when">Feb 2025 – Present</span><span><strong><a href="https://group.iiis.tsinghua.edu.cn/~maks/" target="_blank" rel="noopener noreferrer">ARChip Lab</a>, Tsinghua University</strong> — Research Assistant. 3D-stacked accelerator design for large language models.</span></li>
+      <li><span class="exp-when">Feb 2025 – Present</span><span><strong><a href="https://group.iiis.tsinghua.edu.cn/~maks/" target="_blank" rel="noopener noreferrer">ARChip Lab</a>, Tsinghua University</strong> — Research Assistant -&gt; Incoming PhD.</span></li>
+      <li><span class="exp-when">Feb 2026 – Jul 2026</span><span><strong><a href="https://catalyst.cs.cmu.edu/" target="_blank" rel="noopener noreferrer">Catalyst Lab</a>, Carnegie Mellon University</strong> — Research Intern, advised by <a href="https://scholar.google.com/citations?user=0IWLFR4AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Zhihao Jia</a>.</span></li>
     </ul>
     <h3>Industry</h3>
     <ul class="exp">
-      <li><span class="exp-when">Jan 2026 – Present</span><span><strong>Tencent (WeChat Group)</strong> — Research Intern. Draft-model architecture for speculative decoding.</span></li>
+      <li><span class="exp-when">Jan 2026 – Present</span><span><strong>Tencent (WELM)</strong> — Research Intern.</span></li>
       <li><span class="exp-when">Sep 2024 – Feb 2025</span><span><strong>ZhenFund</strong> — Investment Research Intern.</span></li>
-      <li><span class="exp-when">Jul – Sep 2024</span><span><strong>Tencent (Machine Learning Platform)</strong> — Research Intern. MCTS-based reasoning for Olympiad-style tasks.</span></li>
+      <li><span class="exp-when">Jul – Sep 2024</span><span><strong>Tencent (Hunyuan)</strong> — Research Intern.</span></li>
     </ul>
   </section>
 
@@ -94,6 +107,10 @@ const formatDate = (date: Date) =>
       <p class="note">Posts will appear here as they are published.</p>
     )}
     <p style="margin-top:14px"><a href="/blog/">All posts →</a></p>
+  </section>
+
+  <section class="block">
+    <h2 class="section">News</h2>
   </section>
 
   <section class="block">

@@ -22,6 +22,9 @@ const { Content } = await render(post);
         {post.data.tags.length > 0 && <> · {post.data.tags.join(' · ')}</>}
       </p>
       <p>{post.data.summary}</p>
+      {post.data.arxivUrl && (
+        <p class="article-links"><a href={post.data.arxivUrl} target="_blank" rel="noopener noreferrer">arXiv</a></p>
+      )}
       <nav class="article-toc" id="article-toc" aria-label="Contents" hidden>
         <div class="article-toc-title">Contents</div>
         <ol id="article-toc-list"></ol>

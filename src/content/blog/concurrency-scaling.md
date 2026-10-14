@@ -1,7 +1,8 @@
 ---
 title: "Concurrency Scaling: Beyond Model Scaling and Time Scaling"
 summary: "A preprint proposing concurrency scaling as a third axis of AI capability: expanding concurrent agents and workflows to raise what a trained system can discover, derive, and construct."
-date: 2026-10-06
+date: 2026-09-18
+arxivUrl: "https://arxiv.org/submit/8096949/view"
 tags: ["AI", "Scaling", "Agents", "Systems"]
 draft: false
 ---

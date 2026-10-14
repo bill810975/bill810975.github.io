@@ -359,6 +359,11 @@ li {
   color: var(--muted);
 }
 
+.article-links {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
 /* ---------- article ---------- */
 
 .prose {

@@ -5,6 +5,7 @@ const entrySchema = z.object({
   title: z.string(),
   summary: z.string(),
   date: z.coerce.date(),
+  arxivUrl: z.string().url().optional(),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),
 });

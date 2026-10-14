@@ -13,6 +13,7 @@ const {
 
 const fullTitle = title ? `${title} | Muheng Li` : 'Muheng Li — AI Systems & Computer Architecture';
 const path = Astro.url.pathname;
+const showProfile = path === '/';
 const isBlogPost = path.startsWith('/blog/') && path !== '/blog/';
 const email = 'limh23@mails.tsinghua.edu.cn';
 const nav = [
@@ -57,7 +58,8 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <title>{fullTitle}</title>
   </head>
   <body>
-    <div class="wrapper">
+    <div class={showProfile ? 'wrapper with-sidebar' : 'wrapper'}>
+      {showProfile && (
       <aside class="sidebar">
         <img class="avatar-img" src="/avatar.jpg" alt="Muheng Li" width="168" height="168" />
         <h1 class="name">Muheng Li</h1>
@@ -76,6 +78,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
           </a>
         </div>
       </aside>
+      )}
       <div class="main">
         <nav class="topnav" aria-label="Main navigation">
           {nav.map((item) => <a class={isActive(item.href) ? 'active' : ''} href={item.href}>{item.label}</a>)}

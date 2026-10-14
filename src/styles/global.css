@@ -367,12 +367,16 @@ li {
 
 .prose h2 {
   font-size: 1.15rem;
-  margin: 28px 0 10px;
+  margin: 32px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 24px;
 }
 
 .prose h3 {
   font-size: 1.02rem;
   margin: 22px 0 8px;
+  scroll-margin-top: 24px;
 }
 
 .prose ul {
@@ -416,6 +420,46 @@ li {
 
 .prose math {
   font-size: 1.05em;
+}
+
+.article-toc {
+  margin-top: 22px;
+  padding: 14px 18px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.article-toc[hidden] {
+  display: none;
+}
+
+.article-toc-title {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #57606a;
+}
+
+.article-toc ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.article-toc li {
+  margin: 3px 0;
+  font-size: 0.9rem;
+}
+
+.article-toc .toc-level-3 {
+  margin-left: 16px;
+  font-size: 0.86rem;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
 }
 
 /* figures, tables and citations in paper-style posts */

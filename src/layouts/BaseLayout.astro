@@ -13,6 +13,7 @@ const {
 
 const fullTitle = title ? `${title} | Muheng Li` : 'Muheng Li — AI Systems & Computer Architecture';
 const path = Astro.url.pathname;
+const isBlogPost = path.startsWith('/blog/') && path !== '/blog/';
 const email = 'limh23@mails.tsinghua.edu.cn';
 const nav = [
   { href: '/', label: 'About' },
@@ -38,6 +39,24 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta property="og:image" content={`${Astro.url.origin}/icon-512.png`} />
     <link rel="canonical" href={Astro.url.href} />
+    {isBlogPost && (
+      <>
+        <script is:inline>
+          window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    processEscapes: true
+  },
+  options: {
+    processHtmlClass: 'prose',
+    ignoreHtmlClass: 'tex2jax_ignore'
+  }
+};
+        </script>
+        <script is:inline src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      </>
+    )}
     <title>{fullTitle}</title>
   </head>
   <body>

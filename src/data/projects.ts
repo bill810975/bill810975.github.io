@@ -1,5 +1,5 @@
 export type ProjectLink = {
-  label: 'GitHub' | 'arXiv' | 'Link';
+  label: 'GitHub' | 'arXiv' | 'Blog' | 'Link';
   href: string;
   primary?: boolean;
 };
@@ -19,8 +19,12 @@ export const projects: Project[] = [
   {
     slug: 'elasticweave',
     title: 'ElasticWeave',
+    period: '2026 — Present',
     category: 'Research',
-    links: [{ label: 'GitHub', href: 'https://github.com/ElasticWeave/ElasticWeave', primary: true }],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/ElasticWeave/ElasticWeave', primary: true },
+      { label: 'Blog', href: '/blog/concurrency-scaling/' },
+    ],
   },
   {
     slug: 'mirage-persistent-kernel',
@@ -36,6 +40,7 @@ export const projects: Project[] = [
   {
     slug: 'speculative-draft-model',
     title: 'Draft Models for Speculative Decoding',
+    period: 'Jan 2026 — Present',
     category: 'Research',
     affiliation: 'Tencent',
     descriptionHtml:
@@ -45,6 +50,7 @@ export const projects: Project[] = [
     slug: 'bringing-taurus-to-real-world-tasks',
     title: 'Bringing Taurus to Real World Tasks',
     tagline: 'Interconnect topology exploration under practical workload constraints.',
+    period: 'Jul — Sep 2025',
     category: 'Research',
     affiliation: 'Course Research Project',
     links: [
@@ -59,6 +65,7 @@ export const projects: Project[] = [
     slug: 'olympiad-mcts',
     title: 'MCTS for Olympiad Reasoning',
     tagline: 'Exploring reasoning paths for mathematics and physics problems.',
+    period: 'Jul — Sep 2024',
     category: 'Research',
     affiliation: 'Tencent',
   },
@@ -66,6 +73,7 @@ export const projects: Project[] = [
     slug: 'fpga-cnn-accelerator',
     title: 'FPGA CNN Accelerator',
     tagline: 'An end-to-end Verilog accelerator for MNIST inference.',
+    period: 'Sep 2024 — Jan 2025',
     category: 'Engineering',
     affiliation: 'Course project',
   },
@@ -73,7 +81,10 @@ export const projects: Project[] = [
     slug: 'fpga-mips-cpu',
     title: '32-bit MIPS CPU on FPGA',
     tagline: 'a MIPS-based processor',
+    period: 'Jul 2024',
     category: 'Engineering',
     affiliation: 'Course project',
   },
 ];
+
+export const currentProjects = projects.filter((project) => project.period?.includes(String(new Date().getFullYear())));

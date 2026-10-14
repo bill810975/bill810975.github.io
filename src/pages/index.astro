@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectRow from '../components/ProjectRow.astro';
-import { projects } from '../data/projects';
+import { currentProjects } from '../data/projects';
 import { getCollection } from 'astro:content';
 
-const homepageProjects = projects;
+const homepageProjects = currentProjects;
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
@@ -52,7 +52,7 @@ const formatDate = (date: Date) =>
         <strong>Agent systems for machine learning systems and computer architecture co-design</strong>
         <ul>
           <li>Concurrency scaling of agent systems</li>
-          <li>Agent build agent</li>
+          <li>Agent Build Agent</li>
           <li>Agent for machine learning systems and computer architecture co-design</li>
         </ul>
       </li>

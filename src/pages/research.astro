@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectRow from '../components/ProjectRow.astro';
-import { projects } from '../data/projects';
+import { currentProjects } from '../data/projects';
 
-const researchProjects = projects.filter((project) => project.category === 'Research');
+const researchProjects = currentProjects.filter((project) => project.category === 'Research');
 ---
 <BaseLayout
   title="Research"

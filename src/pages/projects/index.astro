@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectRow from '../../components/ProjectRow.astro';
-import { projects } from '../../data/projects';
+import { currentProjects } from '../../data/projects';
 
 const groups = (['Research', 'Engineering', 'Applied AI'] as const)
-  .map((category) => ({ category, items: projects.filter((project) => project.category === category) }))
+  .map((category) => ({ category, items: currentProjects.filter((project) => project.category === category) }))
   .filter((group) => group.items.length > 0);
 ---
 <BaseLayout

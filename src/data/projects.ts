@@ -29,9 +29,10 @@ export const projects: Project[] = [
   {
     slug: 'mirage-persistent-kernel',
     title: 'Mirage Persistent Kernel',
-    tagline: 'Research intern project at CMU Catalyst Lab.',
+    tagline: 'Persistent Kernel Method for Inference in GPU',
     period: 'April – June 2026',
     category: 'Research',
+    affiliation: 'CMU Catalyst Lab',
     links: [
       { label: 'GitHub', href: 'https://github.com/mirage-project/mirage', primary: true },
       { label: 'arXiv', href: 'https://arxiv.org/abs/2512.22219' },
